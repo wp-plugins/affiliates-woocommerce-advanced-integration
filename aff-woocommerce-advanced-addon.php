@@ -156,18 +156,20 @@ function woo_advanced_handle_woocommerce_comm_override($override, $data) {
     wp_affiliate_log_debug('Woo Advanced - direct commission award function processed for primary affiliate ('.$referrer.'). Commission amount: '.$total_commission_amount, true);
     
     //Process 2nd tier commission
-    $t2fields = array();
-    $t2fields['refid'] = $second_tier_referrer;
-    $t2fields['payment'] = $total_t2_commission_amount;
-    $t2fields['sale_amount'] = $sale_amt;
-    $t2fields['txn_id'] = $order_id_data;
-    //$fields['item_id'] = $item_id;
-    $t2fields['buyer_email'] = $order->billing_email;
-    $t2fields['buyer_name'] = $order->billing_first_name . " " . $order->billing_last_name;    
-    $t2fields['is_tier_comm'] = "yes";
-    wp_aff_add_commission_amt_directly($t2fields);
-    wp_affiliate_log_debug('Woo Advanced - direct commission award function processed for 2nd tier affiliate ('.$second_tier_referrer.'). 2nd Tier commission amount: '.$total_t2_commission_amount, true);
-
+    if(!empty($second_tier_referrer)){
+        $t2fields = array();
+        $t2fields['refid'] = $second_tier_referrer;
+        $t2fields['payment'] = $total_t2_commission_amount;
+        $t2fields['sale_amount'] = $sale_amt;
+        $t2fields['txn_id'] = $order_id_data;
+        //$fields['item_id'] = $item_id;
+        $t2fields['buyer_email'] = $order->billing_email;
+        $t2fields['buyer_name'] = $order->billing_first_name . " " . $order->billing_last_name;    
+        $t2fields['is_tier_comm'] = "yes";
+        wp_aff_add_commission_amt_directly($t2fields);
+        wp_affiliate_log_debug('Woo Advanced - direct commission award function processed for 2nd tier affiliate ('.$second_tier_referrer.'). 2nd Tier commission amount: '.$total_t2_commission_amount, true);
+    }
+    
     return $override;
 }
 
