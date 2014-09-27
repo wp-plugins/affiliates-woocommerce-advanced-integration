@@ -4,7 +4,7 @@
  * Plugin Name: Affiliates WooCommerce Advanced Integration
  * Plugin URI: https://www.tipsandtricks-hq.com/wordpress-affiliate-platform-plugin-simple-affiliate-program-for-wordpress-blogsite-1474
  * Description: Addon for using advanced WooCommerce integration options with the affiliate platform plugin
- * Version: 1.1
+ * Version: 1.2
  * Author: Tips and Tricks HQ
  * Author URI: https://www.tipsandtricks-hq.com/
  * Requires at least: 3.0
@@ -139,6 +139,11 @@ function woo_advanced_handle_woocommerce_comm_override($override, $data) {
         return $override;
     }
 
+    //Round up the amounts
+    $total_commission_amount = round($total_commission_amount, 0);
+    $total_t2_commission_amount = round($total_t2_commission_amount, 0);
+    
+    //Process primary commission    
     $fields = array();
     $fields['refid'] = $referrer;
     $fields['payment'] = $total_commission_amount;
@@ -148,8 +153,20 @@ function woo_advanced_handle_woocommerce_comm_override($override, $data) {
     $fields['buyer_email'] = $order->billing_email;
     $fields['buyer_name'] = $order->billing_first_name . " " . $order->billing_last_name;
     wp_aff_add_commission_amt_directly($fields);
-    wp_affiliate_log_debug('Woo Advanced - direct commission award function processed.', true);
-
+    wp_affiliate_log_debug('Woo Advanced - direct commission award function processed for primary affiliate ('.$referrer.'). Commission amount: '.$total_commission_amount, true);
+    
+    //Process 2nd tier commission
+    $t2fields = array();
+    $t2fields['refid'] = $second_tier_referrer;
+    $t2fields['payment'] = $total_t2_commission_amount;
+    $t2fields['sale_amount'] = $sale_amt;
+    $t2fields['txn_id'] = $order_id_data;
+    //$fields['item_id'] = $item_id;
+    $t2fields['buyer_email'] = $order->billing_email;
+    $t2fields['buyer_name'] = $order->billing_first_name . " " . $order->billing_last_name;    
+    $t2fields['is_tier_comm'] = "yes";
+    wp_aff_add_commission_amt_directly($t2fields);
+    wp_affiliate_log_debug('Woo Advanced - direct commission award function processed for 2nd tier affiliate ('.$second_tier_referrer.'). 2nd Tier commission amount: '.$total_t2_commission_amount, true);
 
     return $override;
 }

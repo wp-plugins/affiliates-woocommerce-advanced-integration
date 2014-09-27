@@ -1,10 +1,10 @@
 === Affiliates WooCommerce Advanced Integration ===
 Contributors: Tips and Tricks HQ, wptipsntricks
 Donate link: https://www.tipsandtricks-hq.com/wordpress-affiliate-platform-plugin-simple-affiliate-program-for-wordpress-blogsite-1474
-Tags: woocommerce, affiliate, affiliates, affiliate management, integration, affiliate program, affiliate system, commission, commission rate, product
+Tags: woocommerce, affiliate, affiliates, affiliate management, integration, affiliate program, affiliate system, commission, commission rate, product, marketing
 Requires at least: 3.0
-Tested up to: 3.9.1
-Stable tag: 1.1
+Tested up to: 4.0
+Stable tag: 1.2
 License: GPLv2 or later
 
 Allows you to use some advanced WooCommerce integration options with the affiliate platform plugin
