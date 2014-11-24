@@ -4,7 +4,7 @@
  * Plugin Name: Affiliates WooCommerce Advanced Integration
  * Plugin URI: https://www.tipsandtricks-hq.com/wordpress-affiliate-platform-plugin-simple-affiliate-program-for-wordpress-blogsite-1474
  * Description: Addon for using advanced WooCommerce integration options with the affiliate platform plugin
- * Version: 1.2
+ * Version: 1.3
  * Author: Tips and Tricks HQ
  * Author URI: https://www.tipsandtricks-hq.com/
  * Requires at least: 3.0
@@ -140,8 +140,8 @@ function woo_advanced_handle_woocommerce_comm_override($override, $data) {
     }
 
     //Round up the amounts
-    $total_commission_amount = round($total_commission_amount, 0);
-    $total_t2_commission_amount = round($total_t2_commission_amount, 0);
+    $total_commission_amount = round($total_commission_amount, 2);
+    $total_t2_commission_amount = round($total_t2_commission_amount, 2);
     
     //Process primary commission    
     $fields = array();
