@@ -4,13 +4,14 @@
  * Plugin Name: Affiliates WooCommerce Advanced Integration
  * Plugin URI: https://www.tipsandtricks-hq.com/wordpress-affiliate-platform-plugin-simple-affiliate-program-for-wordpress-blogsite-1474
  * Description: Addon for using advanced WooCommerce integration options with the affiliate platform plugin
- * Version: 1.3
+ * Version: 1.4
  * Author: Tips and Tricks HQ
  * Author URI: https://www.tipsandtricks-hq.com/
  * Requires at least: 3.0
  */
-if (!defined('ABSPATH'))
+if (!defined('ABSPATH')){
     exit;
+}
 
 //Add the meta box in the woocommerce product add/edit interface
 add_action('add_meta_boxes', 'aff_woo_advanced_meta_boxes');
@@ -91,7 +92,7 @@ function woo_advanced_handle_woocommerce_comm_override($override, $data) {
                 $product_second_tier_comm_amt = 0;
             } else if (is_numeric($p_comm_level)) {
                 //== Calculate product specific commision for this product ==
-                wp_affiliate_log_debug('Woo Advanced - This product has a product specific commisison rate specified for it.', true);
+                wp_affiliate_log_debug('Woo Advanced - This product has a product specific commisison rate specified for it. Commission Level: '. $p_comm_level, true);
                 if (get_option('wp_aff_use_fixed_commission')) {
                     //using fixed commission rate model
                     $product_comm_amount = $item_qty * $p_comm_level;
@@ -110,7 +111,7 @@ function woo_advanced_handle_woocommerce_comm_override($override, $data) {
                 }
             } else {
                 //== Calculate commission based on affiliate profile ==
-                wp_affiliate_log_debug('Woo Advanced - Using commission rate from affiliate profile', true);
+                wp_affiliate_log_debug('Woo Advanced - Using commission rate from affiliate profile. Commission Level: '.$commission_level, true);
                 if (get_option('wp_aff_use_fixed_commission')) {
                     wp_affiliate_log_debug('Woo Advanced - Using fixed commission rate for this commission. Qty:' . $item_qty . ', Fixed commission level:' . $commission_level, true);
                     //Give fixed commission from the affiliate's specified level
@@ -127,7 +128,9 @@ function woo_advanced_handle_woocommerce_comm_override($override, $data) {
             }
 
             $total_commission_amount = $total_commission_amount + $product_comm_amount;
-            $total_t2_commission_amount = $total_t2_commission_amount + $product_second_tier_comm_amt;
+            $total_t2_commission_amount = $total_t2_commission_amount + $product_second_tier_comm_amt;            
+            wp_affiliate_log_debug('Woo Advanced - Line total: '.$line_subtotal.'. Qty: '.$item_qty,true);
+            wp_affiliate_log_debug('Woo Advanced - Commission Level: '.$p_comm_level . '. Product Comm Amt: '.$product_comm_amount,true);
         }
     }//End of foreach
     //echo "<br />Total Commission amt: ".$total_commission_amount;

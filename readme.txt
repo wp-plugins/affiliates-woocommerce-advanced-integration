@@ -3,8 +3,8 @@ Contributors: Tips and Tricks HQ, wptipsntricks
 Donate link: https://www.tipsandtricks-hq.com/wordpress-affiliate-platform-plugin-simple-affiliate-program-for-wordpress-blogsite-1474
 Tags: woocommerce, affiliate, affiliates, affiliate management, integration, affiliate program, affiliate system, commission, commission rate, product, marketing
 Requires at least: 3.0
-Tested up to: 4.0
-Stable tag: 1.3
+Tested up to: 4.2
+Stable tag: 1.4
 License: GPLv2 or later
 
 Allows you to use some advanced WooCommerce integration options with the affiliate platform plugin
@@ -33,6 +33,9 @@ Visit the following affiliate plugin page to see screenshots:
 https://www.tipsandtricks-hq.com/wordpress-affiliate-platform-plugin-simple-affiliate-program-for-wordpress-blogsite-1474
 
 == Changelog ==
+
+= 1.4 =
+* Added a few more debug statements.
 
 = 1.3 =
 * Updated the commission rounding to 2 decimal places
