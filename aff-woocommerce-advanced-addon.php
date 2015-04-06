@@ -4,7 +4,7 @@
  * Plugin Name: Affiliates WooCommerce Advanced Integration
  * Plugin URI: https://www.tipsandtricks-hq.com/wordpress-affiliate-platform-plugin-simple-affiliate-program-for-wordpress-blogsite-1474
  * Description: Addon for using advanced WooCommerce integration options with the affiliate platform plugin
- * Version: 1.4
+ * Version: 1.5
  * Author: Tips and Tricks HQ
  * Author URI: https://www.tipsandtricks-hq.com/
  * Requires at least: 3.0
@@ -83,9 +83,10 @@ function woo_advanced_handle_woocommerce_comm_override($override, $data) {
             $p_comm_level = get_post_meta($post_id, 'aff_woo_product_specific_commission', true);
             $p_t2_comm_level = ""; //get_post_meta( $post_id, 'aff_woo_product_specific_commission_t2', true );//TODO - add later
 
-            $line_subtotal = $item['line_subtotal']; //(Price per unit * qty)
+            $line_subtotal = $item['line_total']; //Includes the total actual price paid (after discount, fees etc.)
             $item_qty = $item['qty'];
-
+            //wp_aff_write_debug_array($item, true);//Use it to help with debug
+            
             if ($p_comm_level == "0") {
                 //== Product specific commisison override to 0. No commisison for this product.
                 $product_comm_amount = 0;

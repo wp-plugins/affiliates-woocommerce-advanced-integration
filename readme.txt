@@ -4,7 +4,7 @@ Donate link: https://www.tipsandtricks-hq.com/wordpress-affiliate-platform-plugi
 Tags: woocommerce, affiliate, affiliates, affiliate management, integration, affiliate program, affiliate system, commission, commission rate, product, marketing
 Requires at least: 3.0
 Tested up to: 4.2
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 
 Allows you to use some advanced WooCommerce integration options with the affiliate platform plugin
@@ -33,6 +33,10 @@ Visit the following affiliate plugin page to see screenshots:
 https://www.tipsandtricks-hq.com/wordpress-affiliate-platform-plugin-simple-affiliate-program-for-wordpress-blogsite-1474
 
 == Changelog ==
+
+= 1.5 =
+* Added extra conditions so it works correctly when used with the affiliate coupon tracking addon.
+https://wordpress.org/plugins/affiliate-woocommerce-coupons-integration/
 
 = 1.4 =
 * Added a few more debug statements.
